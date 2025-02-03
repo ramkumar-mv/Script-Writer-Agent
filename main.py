@@ -23,7 +23,7 @@ def clean_and_format_response(response_text):
 # Function to generate script using OpenAI
 def generate_script(prompt):
     openai.api_key = OPENAI_API_KEY
-    response = openai.ChatCompletion.create(
+    response = openai.client.chat.completions.create(
         model="chatgpt-4o-latest",
         messages=[
             {"role": "system", "content": "You are a professional screenplay writer. Format your response properly with well-structured text and charcter introduction. If the user asks anything else, politely refuse to answer."},
