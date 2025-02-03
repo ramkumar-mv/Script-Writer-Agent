@@ -1,18 +1,13 @@
 import streamlit as st
-from openai import OpenAI
+import openai
 import re
 
 
 # Set page configuration
 st.set_page_config(page_title="Script Writing Assistant", layout="centered")
 
-
 # OpenAI API Key (Replace with a secure method)
 OPENAI_API_KEY = "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"
-
-client = OpenAI(
-    api_key=OPENAI_API_KEY,  # This is the default and can be omitted
-)
 
 # Function to clean and format response
 def clean_and_format_response(response_text):
@@ -28,7 +23,7 @@ def clean_and_format_response(response_text):
 # Function to generate script using OpenAI
 def generate_script(prompt):
     openai.api_key = OPENAI_API_KEY
-    response = client.chat.completions.create(
+    response = openai.ChatCompletion.create(
         model="chatgpt-4o-latest",
         messages=[
             {"role": "system", "content": "You are a professional screenplay writer. Format your response properly with well-structured text and charcter introduction. If the user asks anything else, politely refuse to answer."},
