@@ -7,7 +7,7 @@ import re
 st.set_page_config(page_title="Script Writing Assistant", layout="centered")
 
 # OpenAI API Key (Replace with a secure method)
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 # Function to clean and format response
 def clean_and_format_response(response_text):
