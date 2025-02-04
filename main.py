@@ -30,7 +30,7 @@ def generate_script(prompt):
     raw_text = response["choices"][0]["message"]["content"]
     return clean_and_format_response(raw_text)
 
-st.image("logo.png", width=200)
+st.image("logo.png", width=400)
 st.markdown("""
         <h1>📜 Script Writing Agent</h1>
     """, unsafe_allow_html=True)
