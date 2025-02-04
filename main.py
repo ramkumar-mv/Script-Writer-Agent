@@ -36,14 +36,15 @@ def generate_script(prompt):
 
 # --- UI DESIGN ---
 
-# Logo & Title (Centered with a larger, properly styled logo)
-st.image("logo.png", width=200)
-st.markdown("""
-    <div style="text-align: center;">
-        <h1 style="font-size: 2.5em; font-weight: bold; margin-top: 10px;">📜 Script Writing Agent</h1>
-    </div>
-    <hr>
-    """, unsafe_allow_html=True)
+# Logo & Title in the same row
+col1, col2 = st.columns([1, 5])
+with col1:
+    st.image("logo.png", width=100)
+with col2:
+    st.markdown("""
+        <h1 style="font-size: 2.5em; font-weight: bold; margin: 10px 0px;">📜 Script Writing Agent</h1>
+        <hr>
+        """, unsafe_allow_html=True)
 
 # Output Section (Script display area)
 if "script_text" in st.session_state and st.session_state.script_text:
