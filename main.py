@@ -31,6 +31,12 @@ def generate_script(prompt):
     return clean_and_format_response(raw_text)
 
 st.image("logo.png", width=200)
+st.markdown("""
+    <div style="text-align: center;">
+        <h1>📜 Script Writing Agent</h1>
+    </div>
+    <hr>
+    """, unsafe_allow_html=True)
 
 # Output Section (Script display area)
 if "script_text" in st.session_state and st.session_state.script_text:
