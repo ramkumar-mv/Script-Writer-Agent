@@ -39,7 +39,7 @@ def generate_script(prompt):
 # Logo & Title (Centered with a larger logo)
 st.markdown("""
     <div style="text-align: center;">
-        <img src="logo.png" width="200">
+        st.image("logo.png", width=200)
         <h1>📜 Script Writing Agent</h1>
     </div>
     <hr>
