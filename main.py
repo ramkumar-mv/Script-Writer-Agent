@@ -34,17 +34,50 @@ def generate_script(prompt):
     raw_text = response["choices"][0]["message"]["content"]
     return clean_and_format_response(raw_text)
 
+# --- Custom CSS for styling ---
+def add_custom_css():
+    st.markdown(
+        """
+        <style>
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+        .stMarkdown {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .header img {
+            height: 70px;
+            margin-right: 15px;
+        }
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+add_custom_css()
+
 # --- UI DESIGN ---
 
 # Logo & Title in the same row
-col1, col2 = st.columns([1, 5])
-with col1:
-    st.image("logo.png", width=100)
-with col2:
-    st.markdown("""
-        <h1 style="font-size: 2.5em; font-weight: bold; margin: 10px 0px;">📜 Script Writing Agent</h1>
-        <hr>
-        """, unsafe_allow_html=True)
+st.markdown("""
+    <div class="header">
+        <img src="logo.png" alt="Logo">
+        <span class="header-title">📜 Script Writing Agent</span>
+    </div>
+    <hr>
+    """, unsafe_allow_html=True)
 
 # Output Section (Script display area)
 if "script_text" in st.session_state and st.session_state.script_text:
