@@ -54,11 +54,11 @@ def add_custom_css():
             justify-content: flex-start;
         }
         .header img {
-            height: 70px;
+            height: 100px;
             margin-right: 15px;
         }
         .header-title {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
         }
         </style>
@@ -71,13 +71,14 @@ add_custom_css()
 # --- UI DESIGN ---
 
 # Logo & Title in the same row
-st.markdown("""
-    <div class="header">
-        <img src="logo.png" alt="Logo">
-        <span class="header-title">📜 Script Writing Agent</span>
-    </div>
-    <hr>
-    """, unsafe_allow_html=True)
+col1, col2 = st.columns([1, 5])
+with col1:
+    st.image("logo.png", width=220)
+with col2:
+    st.markdown("""
+        <div class="header-title">📜 Script Writing Agent</div>
+        <hr>
+        """, unsafe_allow_html=True)
 
 # Output Section (Script display area)
 if "script_text" in st.session_state and st.session_state.script_text:
@@ -105,3 +106,4 @@ st.markdown("""
     <br><br>
     <center>🔹 <b>Copyright @ immerso.ai 2025</b></center>
     """, unsafe_allow_html=True)
+
