@@ -37,9 +37,9 @@ def generate_script(prompt):
 # --- UI DESIGN ---
 
 # Logo & Title (Centered with a larger, properly styled logo)
+st.image("logo.png", width=200)
 st.markdown("""
     <div style="text-align: center;">
-        <img src="logo.png" style="width: 250px; height: auto; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
         <h1 style="font-size: 2.5em; font-weight: bold; margin-top: 10px;">📜 Script Writing Agent</h1>
     </div>
     <hr>
