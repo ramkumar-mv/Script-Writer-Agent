@@ -2,12 +2,12 @@ import streamlit as st
 import openai
 import re
 
-
 # Set page configuration
-st.set_page_config(page_title="Script Writing Assistant", layout="centered")
+st.set_page_config(page_title="Script Writing Agent", layout="centered")
 
 # OpenAI API Key (Replace with a secure method)
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+
 # Function to clean and format response
 def clean_and_format_response(response_text):
     response_text = re.sub(r"\*\*(.*?)\*\*", r"\1", response_text)  # Remove bold markdown
@@ -25,7 +25,7 @@ def generate_script(prompt):
     response = openai.ChatCompletion.create(
         model="chatgpt-4o-latest",
         messages=[
-            {"role": "system", "content": "You are a professional screenplay writer. Format your response properly with well-structured text and charcter introduction. If the user asks anything else, politely refuse to answer."},
+            {"role": "system", "content": "You are a professional screenplay writer. Format your response properly with well-structured text and character introduction. If the user asks anything else, politely refuse to answer."},
             {"role": "user", "content": prompt}
         ],
         max_tokens=2000,
@@ -36,19 +36,19 @@ def generate_script(prompt):
 
 # --- UI DESIGN ---
 
-# Logo & Title (Keeps it at the top)
-with st.container():
-    col1, col2 = st.columns([1, 5])
-    with col1:
-        st.image("logo.png", use_container_width=True)
-    with col2:
-        st.markdown('<div class="header-title">Script Writing Assistant 📜</div>', unsafe_allow_html=True)
-st.markdown("---")
+# Logo & Title (Centered with a larger logo)
+st.markdown("""
+    <div style="text-align: center;">
+        <img src="logo.png" width="200">
+        <h1>📜 Script Writing Agent</h1>
+    </div>
+    <hr>
+    """, unsafe_allow_html=True)
 
 # Output Section (Script display area)
 if "script_text" in st.session_state and st.session_state.script_text:
     st.subheader("🎬 Generated Script")
-    st.write(st.session_state.script_text)  
+    st.write(st.session_state.script_text)
 
 # Spacer to push input box to the bottom
 st.markdown("<div style='height: 30vh;'></div>", unsafe_allow_html=True)
@@ -67,4 +67,7 @@ if st.button("Generate Script"):
         st.warning("⚠️ Please enter a valid prompt.")
 
 # Footer
-st.markdown("<br><br><center>🔹 **Copyright @ immerso.ai 2025**</center>", unsafe_allow_html=True)
+st.markdown("""
+    <br><br>
+    <center>🔹 <b>Copyright @ immerso.ai 2025</b></center>
+    """, unsafe_allow_html=True)
