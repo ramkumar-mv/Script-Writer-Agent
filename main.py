@@ -2,10 +2,13 @@ import streamlit as st
 import openai
 import re
 
+# Set page configuration
 st.set_page_config(page_title="Script Writing Agent", layout="centered")
 
+# OpenAI API Key (Replace with a secure method)
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
+# Function to clean and format response
 def clean_and_format_response(response_text):
     response_text = re.sub(r"\*\*(.*?)\*\*", r"\1", response_text)  # Remove bold markdown
     response_text = re.sub(r"\*(.*?)\*", r"\1", response_text)  # Remove italics
@@ -16,6 +19,7 @@ def clean_and_format_response(response_text):
     response_text = response_text.strip()  # Trim spaces
     return response_text
 
+# Function to generate script using OpenAI
 def generate_script(prompt):
     openai.api_key = OPENAI_API_KEY
     response = openai.ChatCompletion.create(
@@ -30,9 +34,15 @@ def generate_script(prompt):
     raw_text = response["choices"][0]["message"]["content"]
     return clean_and_format_response(raw_text)
 
-st.image("logo.png", width=400)
+# --- UI DESIGN ---
+
+# Logo & Title (Centered with a larger, properly styled logo)
 st.markdown("""
-        <h1>📜 Script Writing Agent</h1>
+    <div style="text-align: center;">
+        <img src="logo.png" style="width: 250px; height: auto; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
+        <h1 style="font-size: 2.5em; font-weight: bold; margin-top: 10px;">📜 Script Writing Agent</h1>
+    </div>
+    <hr>
     """, unsafe_allow_html=True)
 
 # Output Section (Script display area)
