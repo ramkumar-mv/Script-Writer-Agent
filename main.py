@@ -32,10 +32,7 @@ def generate_script(prompt):
 
 st.image("logo.png", width=200)
 st.markdown("""
-    <div style="text-align: center;">
         <h1>📜 Script Writing Agent</h1>
-    </div>
-    <hr>
     """, unsafe_allow_html=True)
 
 # Output Section (Script display area)
